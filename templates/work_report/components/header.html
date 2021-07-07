@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1 class="h2">{{ title|default:"" }}</h1>
+    {% if has_filter is True %}
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <a href="
+{% url 'export_csv-WR' %}
+{{ request.get_full_path|slice:"18:" }}"
+                   class="btn btn-sm btn-outline-secondary" target="_blank" role="button" aria-disabled="true">Export to CSV</a>
+                <a href="
+{% url 'export_pdf-WR' %}
+{{ request.get_full_path|slice:"18:" }}"
+                   class="btn btn-sm btn-outline-secondary" target="_blank" role="button" aria-disabled="true">Export to PDF</a>
+            </div>
+
+        </div>
+
+    {% endif %}
+</div>

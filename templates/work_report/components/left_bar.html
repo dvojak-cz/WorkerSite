@@ -1,0 +1,73 @@
+{% load my_tags %}
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'dashboard-WR' %}">
+                    <span data-feather="home"></span>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'report_list-WR' %}">
+                    <span data-feather="align-center"></span>
+                    Přehled výkazu práce
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'project_view-WR' %}">
+                    <span data-feather="briefcase"></span>
+                    Přehled projektů
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'new_reports-WR' %}">
+                    <span data-feather="check-square"></span>
+                    Nový výkaz
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'new_project-WR' %}">
+                    <span data-feather="plus-circle"></span>
+                    Nový projekt
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Uložené výkazy</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+                <a class="nav-link" href="
+                        {% url 'report_list-WR' %}{% current_month_filter %}">
+                    <span data-feather="calendar"></span>
+                    Tento měsíc
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="
+                        {% url 'report_list-WR' %}{% last_month_filter %}">
+                    <span data-feather="calendar"></span>
+                    Minulý měsíc
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="
+                        {% url 'report_list-WR' %}{% current_year_filter %}">
+                    <span data-feather="calendar"></span>
+                    Tento rok
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="
+                        {% url 'report_list-WR' %}{% last_year_filter %}">
+                    <span data-feather="calendar"></span>
+                    Minulý rok
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+</nav>

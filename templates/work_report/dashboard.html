@@ -1,0 +1,110 @@
+{% extends 'shared/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+    {% include 'work_report/components/left_bar.html' %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        {% include 'work_report/components/header.html' %}
+        {% include 'work_report/components/canvas.html' %}
+        <div class="row my-5">
+            <div class="col-sm-4">
+                <div class="card-deck">
+                    <div class="card text-white bg-primary mb-3">
+                        <div class="card-header"><h2>Tento měsíc</h2></div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odpracováno hodin</h4>
+                            <h3 class="card-text">{{ data.pocet_hodin_tento_mesic.productive_time__sum|default:"0h 0m"|duration }}</h3>
+                        </div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odevzdaných výkazů</h4>
+                            <h3 class="card-text">{{ data.pocet_reportu_tento_mesic|default:"0" }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card-deck">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-header"><h2>Minulý měsíc</h2></div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odpracováno hodin</h4>
+                            <h3 class="card-text">{{ data.pocet_hodin_mesic_minuly.productive_time__sum|default:"0h 0m"|duration }}</h3>
+                        </div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odevzdaných výkazů</h4>
+                            <h3 class="card-text">{{ data.pocet_reportu_mesic_minuly|default:"0" }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card-deck">
+                    <div class="card text-white bg-danger mb-3">
+                        <div class="card-header"><h2>Celkově</h2></div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odpracováno hodin</h4>
+                            <h3 class="card-text">{{ data.pocet_hodin.productive_time__sum|default:"0h 0m"|duration }}</h3>
+                        </div>
+                        <div class="card-body my-2 text-center">
+                            <h4 class="card-title">Celkem odevzdaných výkazů</h4>
+                            <h3 class="card-text">{{ data.pocet_reportu|default:"0" }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if project %}
+            <div class="row my-5">
+                <div class="col-sm-6">
+                    <div class="card-header"><h2>Přehled projeků</h2></div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Název projektu</th>
+                                <th>Odpracováno hodin - celkem</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in project %}
+                                <tr>
+                                    <td>{{ i.project__pk }}</td>
+                                    <td>{{ i.project__name }}</td>
+                                    <td>{{ i.sum|duration }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card-header"><h2>Přehled činností</h2></div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Typ práce</th>
+                                <th>Odpracováno hodin - celkem</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in type_of_work %}
+                                <tr>
+                                    <td>{{ i.type_of_work__pk }}</td>
+                                    <td>{{ i.type_of_work__label }}</td>
+                                    <td>{{ i.sum|duration }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </main>
+{% endblock content %}

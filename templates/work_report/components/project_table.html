@@ -1,0 +1,26 @@
+{% load my_tags %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Název</th>
+            <th>Typ práce</th>
+            <th>Odpracováno</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rep in projects %}
+            <tr>
+                <th scope="row">{{ rep.project__pk }}</th>
+                <td>{{ rep.project__name }}</td>
+                <td>{{ rep.type_of_work__label }}</td>
+                <td>{{ rep.productive_time|duration }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+

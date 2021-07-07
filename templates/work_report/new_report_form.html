@@ -1,0 +1,63 @@
+{% extends 'shared/base.html' %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+    {% include 'work_report/components/left_bar.html' %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        {% include 'work_report/components/header.html' %}
+        <form method="post"> {% csrf_token %}
+            <div class="row my-2">
+                <div class="col">
+                    {{ form.worker.label_tag }}
+                    {% render_field form.worker class="form-control" %}
+                </div>
+                <div class="col">
+                    {{ form.productive_time.label }}
+                    <div style="display: flex">
+                        {% render_field form.productive_time class="form-control" style="flex-direction: row" %}
+                        <script>
+                            pElements = document.getElementsByTagName('p');
+                            for (var i = 0, j = 0; i < pElements.length; i++) {
+                                if (pElements[i].getAttribute("class") === "help") {
+                                    pElements[i].style.visibility = "hidden";
+                                    break;
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    {{ form.type_of_work.label_tag }}
+                    {% render_field form.type_of_work class="form-control" %}
+                </div>
+                <div class="col">
+                    {{ form.project.label_tag }}
+                    {% render_field form.project class="form-control" %}
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    {{ form.arrival.label_tag }}
+                    {% render_field form.arrival type="datetime-local" class="form-control" %}
+                </div>
+                <div class="col">
+                    {{ form.departure.label_tag }}
+                    {% render_field form.departure type="datetime-local" class="form-control" %}
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    {{ form.description.label_tag }}
+                    {% render_field form.description wors="3" class="form-control" %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Přidat</button>
+
+        </form>
+    </main>
+{% endblock content %}

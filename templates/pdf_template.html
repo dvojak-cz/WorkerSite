@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF Document</title>
+    <style>
+        @page {
+            size: landscape;
+            margin: 2.5cm 2.5cm 2.5cm 2.5cm;
+
+            @top-center {
+                content: "Work Report";
+            }
+
+        }
+
+        .zui-table {
+            border: solid 1px #DDEEEE;
+            border-collapse: collapse;
+            border-spacing: 0;
+            font: normal 13px Arial, sans-serif;
+        }
+
+        .zui-table thead th {
+            background-color: #DDEFEF;
+            border: solid 1px #DDEEEE;
+            color: #336B6B;
+            padding: 10px;
+            text-align: left;
+            text-shadow: 1px 1px 1px #fff;
+        }
+
+        .zui-table tbody td {
+            border: solid 1px #DDEEEE;
+            color: #333;
+            padding: 10px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+    </style>
+
+</head>
+<body>
+<table class="zui-table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Pracovník</th>
+        <th>Den</th>
+        <th>Čas</th>
+        <th>Projekt</th>
+        <th>Typ práce</th>
+        <th>Činnost</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rep in reports %}
+        <tr>
+            <th>{{ rep.id }}</th>
+            <td>{{ rep.worker }}</td>
+            <td>{{ rep.arrival|date:"d.m.Y" }}</td>
+            <td>{{ rep.productive_time }}</td>
+            <td>{{ rep.project }}</td>
+            <td>{{ rep.type_of_work }}</td>
+            <td>{{ rep.description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
