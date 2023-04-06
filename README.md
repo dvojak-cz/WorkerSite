@@ -1,6 +1,8 @@
 # Worker Site
 Worker Site je webová aplikace pro správu pracovních výkazů
 
+Report: [report.pdf](./report.pdf)
+
 ## Spuštění
 ### Prostedí
 Aby byla aplikace funkční, jen úptřeba nastavit virtuální prostředí.
